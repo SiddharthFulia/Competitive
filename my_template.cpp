@@ -18,7 +18,7 @@ void solve(){
 }
 int main(){
     // auto start = high_resolution_clock::now();
-    // #ifdef ONLINE_JUDGE
+    // #ifndef ONLINE_JUDGE
     // freopen("ip.txt","r",stdin);
     // freopen("op.txt","w",stdout);
     // #endif

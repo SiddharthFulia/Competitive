@@ -13,7 +13,6 @@ const int N=1e5+10;
 const int M=1e9+7;
 vt <int> g[N];
 int subtree_sum[N];//For sum of subtree
-int even_count[N];//number of even numbers of each node
 void dfs(int vertex,int parent=0){
     //Take action on vertex before entering the node
     subtree_sum[vertex]+=vertex;//Change vertex to value of the given node by val[vertex]

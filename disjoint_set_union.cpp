@@ -21,12 +21,12 @@ ll make(ll v){
 ll find(ll v){
     if(v==parent[v]) return v;
     //finds v node traversing up the tree and also path compression is applied
-    return parent[v]=find(v);
+    return parent[v]=find(parent[v]);
 }
 void Union(ll a,ll b){
     a=find(a);
     b=find(b);
-    while(a!=b){
+    if(a!=b){
         //swap so that always smaller tree is added to bigger tree for time complexity optimization
         if(size[a]<size[b]){
             swap(a,b);
@@ -45,6 +45,7 @@ void solve(){
     while(k--){
         ll u,v;
         cin>>u>>v;
+        Union(u,v);
     }
     ll connected_count=0;
     //nodes which are same as their parent will tell us the number of total parent trees

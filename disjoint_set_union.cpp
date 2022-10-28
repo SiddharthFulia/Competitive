@@ -14,7 +14,7 @@ const ll N=1e5+10;
 const ll M=1e9+7;
 ll parent[N];
 ll size[N];
-ll make(ll v){
+void make(ll v){
     parent[v]=v;
     size[v]=1;
 }
@@ -64,8 +64,8 @@ int main(){
     freopen("op.txt","w",stdout);
     #endif
     FastIO;
-    ll t;
-    cin>>t;
+    ll t=1;
+    // cin>>t;
     while(t--){
         solve();
     }

@@ -31,7 +31,7 @@ void Union(ll a,ll b){
             swap(a,b);
         }
         parent[b]=a;
-        size[a]+=b;
+        size[a]+=size[b];
     }
 }
 void solve(){

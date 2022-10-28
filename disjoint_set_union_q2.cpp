@@ -1,4 +1,4 @@
-//https://www.hackerearth.com/practice/data-structures/disjoint-data-strutures/basics-of-disjoint-data-structures/practice-problems/algorithm/city-and-flood-1/
+//https://www.hackerearth.com/practice/data-structures/disjoint-data-strutures/basics-of-disjoint-data-structures/practice-problems/algorithm/city-and-campers/
 #include <bits/stdc++.h>
 using namespace std;
 // using namespace std::chrono;
@@ -14,14 +14,22 @@ const ll N=1e5+10;
 const ll M=1e9+7;
 ll parent[N];
 ll size[N];
+multiset<ll> sizes;
 void make(ll v){
     parent[v]=v;
     size[v]=1;
+    sizes.insert(1);//set size of each node to 1
 }
 ll find(ll v){
     if(v==parent[v]) return v;
     //finds v node traversing up the tree and also path compression is applied
     return parent[v]=find(parent[v]);
+}
+void merge(ll a,ll b){
+    //dont write size.erase(size[a]) as it will erase all occurences of size[a] whereas here we nees to erase one by one in case of repetition
+    sizes.erase(sizes.find(size[a]));
+    sizes.erase(sizes.find(size[b]));
+    sizes.insert(size[a]+size[b]);
 }
 void Union(ll a,ll b){
     a=find(a);
@@ -32,30 +40,23 @@ void Union(ll a,ll b){
             swap(a,b);
         }
         parent[b]=a;
+        merge(a,b);
         size[a]+=size[b];
     }
 }
 void solve(){
-    ll n,k,i;
-    cin>>n>>k;
+    ll n,q,i;
+    cin>>n>>q;
     for(i=1;i<=n;i++){
         make(i);
     }
     //k is number of queries for union of 2 nodes
-    while(k--){
+    while(q--){
         ll u,v;
         cin>>u>>v;
         Union(u,v);
     }
-    ll connected_count=0;
-    //nodes which are same as their parent will tell us the number of total parent trees
-    //refer attached image
-    for(i=1;i<=n;i++){
-        if(parent[i]==i){
-            connected_count++;
-        }
-    }
-    cout<<connected_count;
+    
     cout<<"\n";
 }
 int main(){

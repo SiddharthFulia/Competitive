@@ -55,9 +55,16 @@ void solve(){
         ll u,v;
         cin>>u>>v;
         Union(u,v);
+        if(sz(sizes)==1){
+        cout<<0;
+        }
+        else{
+            ll min1=*(sizes.begin());//point at the beggining iterator
+            ll max1=*(--sizes.end());//point at the end iterator-1
+            cout<<max1-min1;
+        }
+        cout<<"\n";
     }
-    
-    cout<<"\n";
 }
 int main(){
     #ifndef ONLINE_JUDGE
